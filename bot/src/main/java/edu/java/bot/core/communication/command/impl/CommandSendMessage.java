@@ -17,7 +17,7 @@ public class CommandSendMessage extends Command {
 
     @Override
     protected boolean start(BotService botService, Update update) {
-        botService.sendMessage(message, update);
+        botService.sendMessage(message, update, null);
         return result;
     }
 }
