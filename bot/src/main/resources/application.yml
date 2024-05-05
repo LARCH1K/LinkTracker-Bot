@@ -16,7 +16,10 @@ management:
       exposure:
         include: openapi, swagger-ui
   server:
-    port: 8090
+    port: 8091
+
+server:
+  port: 8090
 
 logging:
   config: classpath:log4j2-plain.xml

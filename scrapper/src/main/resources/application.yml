@@ -1,34 +1,30 @@
-springdoc:
-  use-management-port: true
-
 app:
   scheduler:
-    enable: true
-    interval: 10s
-    force-check-delay: 10s
+    update-interval: 30s
+    delete-interval: 4h
 
 spring:
   application:
     name: scrapper
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5435/db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
 
   liquibase:
-    change-log: liquibase/master.xml
+    enabled: false
 
 server:
-  port: 8081
+  port: 8080
 management:
   endpoints:
     web:
       exposure:
         include: openapi, swagger-ui
   server:
-    port: 9090
+    port: 8081
 
 logging:
   config: classpath:log4j2-plain.xml

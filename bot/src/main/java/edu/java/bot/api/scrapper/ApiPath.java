@@ -13,6 +13,7 @@ public class ApiPath {
 
     public static final String BOT = "bot/";
 
+    public static final String ID = "{id}/";
     public static final String SCRAPPER = "scrapper/";
 
 }

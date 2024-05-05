@@ -15,6 +15,8 @@ public class LinkDto {
     @Pattern(regexp = LINK_PATTERN)
     String value;
 
+    String shortName;
+
     long chatId;
 
 }

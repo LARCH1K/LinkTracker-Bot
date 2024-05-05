@@ -1,6 +1,5 @@
 package edu.java.bot.api.scrapper.dto.request;
 
-import java.util.List;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -10,7 +9,7 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 public class UpdateDto {
 
-    List<UpdateBody> body;
+    UpdateBody body;
 
     long chatId;
 
@@ -18,8 +17,11 @@ public class UpdateDto {
 
         String link,
 
+        String name,
+
         String info
 
-    ) {}
+    ) {
+    }
 
 }

@@ -6,9 +6,11 @@ import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 @Component
+@Log4j2
 @RequiredArgsConstructor
 public class BotFilterChain {
 
@@ -16,6 +18,7 @@ public class BotFilterChain {
 
     @PostConstruct
     public void configureFilterChain() {
+        log.info("[FILTER CHAIN] :: Number of filters: {}.", filters.size());
         IntStream.range(0, filters.size() - 1)
             .forEach(
                 i -> filters.get(i)

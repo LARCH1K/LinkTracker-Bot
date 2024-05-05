@@ -1,38 +1,77 @@
 package edu.java.scrapper.core.sheduled;
 
-import edu.java.scrapper.api.resources.client.GithubClient;
-import edu.java.scrapper.api.resources.client.StackOverflowClient;
+import edu.java.scrapper.api.bot.client.BotClient;
+import edu.java.scrapper.api.bot.dto.response.UpdateDto;
+import edu.java.scrapper.core.service.LinkService;
+import edu.java.scrapper.core.tracked.UpdateStrategy;
+import edu.java.scrapper.entity.Link;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.tuple.Pair;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log4j2
 @RequiredArgsConstructor
+@Log4j2
 public class LinkUpdaterScheduler {
 
-    private final GithubClient githubClient;
-    private final StackOverflowClient stackOverflowClient;
+    private static final int LINKS_TO_UPDATE = 20;
 
-    @Scheduled(fixedDelayString = "#{@interval}")
-    @SuppressWarnings("MagicNumber")
+    private final LinkService linkService;
+
+    private final BotClient botClient;
+
+    private final UpdateStrategy updateStrategy = new UpdateStrategy();
+
+    @Scheduled(fixedDelayString = "#{@deleteInterval}")
+    public void deleteUntracked() {
+        log.trace("[SCHEDULED] :: Deleting untracked links ...");
+        linkService.deleteUntracked();
+        log.trace("[SCHEDULED] :: Deleting untracked links ... Done!");
+
+    }
+
+    @Scheduled(fixedDelayString = "#{@updateInterval}")
     public void update() {
+        log.trace("[SCHEDULED] :: Updating links ...");
 
-        log.info("getting all tracked links ...");
+        var links = linkService.getAllLinksSortedByUpdateDate(LINKS_TO_UPDATE);
+        List<Pair<Link, String>> updatedLinks = new ArrayList<>();
 
-        String repo = "Tinkoff-Backend";
-        String owner = "larchik";
-        long questionId = 66675088;
+        links.forEach(link -> {
+            var rawUpdate = updateStrategy.countHashsum(link.getValue());
+            if (rawUpdate.newHashsum() != link.getHashsum()) {
+                updatedLinks.add(Pair.of(link, rawUpdate.message()));
+            }
+            linkService.update(link, rawUpdate.newHashsum());
+        });
 
-        log.info("getting all updates ...");
+        log.trace("[SCHEDULED] :: Sending updates ...");
 
-        var newCommits = githubClient.getUpdates(repo, owner);
-        var newAnswers = stackOverflowClient.getUpdates(questionId);
+        botClient.sendUpdates(updatedLinks.stream().map(pair -> this.getUpdates(pair.getLeft(), pair.getRight()))
+            .flatMap(List::stream)
+            .toList());
 
-        log.info("saving all updates ...");
+        log.trace("[SCHEDULED] :: Sending updates ... Done!");
 
-        log.info("Done");
+        log.trace("[SCHEDULED] :: Updating links ... Done!");
+    }
+
+    private List<UpdateDto> getUpdates(Link link, String message) {
+        var chats = linkService.findAllChatsConnectedWithLink(link.getValue());
+        return chats.stream().map(chat -> {
+                UpdateDto.UpdateBody body = new UpdateDto.UpdateBody(
+                    link.getValue(),
+                    linkService.getShortName(chat.getTgChatId(), link.getValue()),
+                    message
+                );
+                return UpdateDto.builder().body(body).chatId(chat.getTgChatId()).build();
+            })
+            .toList();
     }
 
 }

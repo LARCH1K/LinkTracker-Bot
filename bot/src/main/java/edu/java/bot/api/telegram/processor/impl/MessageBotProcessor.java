@@ -19,7 +19,8 @@ public class MessageBotProcessor implements BotProcessor {
             botService.consumeDialog(update);
         } else {
             botService.sendMessage("How can I help you? Send a command or use " + HELP_COMMAND + ".",
-                update, null);
+                update, null
+            );
         }
     }
 }
