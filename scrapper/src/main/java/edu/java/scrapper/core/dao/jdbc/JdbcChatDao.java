@@ -1,11 +1,11 @@
-package edu.java.scrapper.core.dao;
+package edu.java.scrapper.core.dao.jdbc;
 
-import edu.java.scrapper.core.dao.mapper.ChatMapper;
+import edu.java.scrapper.core.dao.ChatDao;
+import edu.java.scrapper.core.dao.jdbc.mapper.ChatMapper;
 import edu.java.scrapper.entity.Chat;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @SuppressWarnings("MultipleStringLiterals")
 @RequiredArgsConstructor
-public class JdbcChatDao {
+public class JdbcChatDao implements ChatDao {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -23,7 +23,7 @@ public class JdbcChatDao {
     public Optional<Chat> findByTgChatId(long tgChatID) {
         String sql = "SELECT * FROM chats WHERE tg_chat_id=?";
         try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject(sql, new Object[]{tgChatID}, chatMapper));
+            return Optional.ofNullable(jdbcTemplate.queryForObject(sql, new Object[] {tgChatID}, chatMapper));
         } catch (DataAccessException e) {
             return Optional.empty();
         }

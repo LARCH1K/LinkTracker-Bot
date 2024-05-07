@@ -1,4 +1,4 @@
-package edu.java.scrapper.core.dao.mapper;
+package edu.java.scrapper.core.dao.jdbc.mapper;
 
 import edu.java.scrapper.api.bot.dto.request.LinkViewDto;
 import java.sql.ResultSet;

@@ -1,15 +1,15 @@
-package edu.java.scrapper.core.dao;
+package edu.java.scrapper.core.dao.jdbc;
 
-import edu.java.scrapper.core.dao.mapper.ChatLinksMapper;
-import edu.java.scrapper.core.dao.mapper.ChatMapper;
-import edu.java.scrapper.core.dao.mapper.LinkMapper;
+import edu.java.scrapper.core.dao.ChatLinksDao;
+import edu.java.scrapper.core.dao.jdbc.mapper.ChatLinksMapper;
+import edu.java.scrapper.core.dao.jdbc.mapper.ChatMapper;
+import edu.java.scrapper.core.dao.jdbc.mapper.LinkMapper;
 import edu.java.scrapper.entity.Chat;
 import edu.java.scrapper.entity.ChatLinks;
 import edu.java.scrapper.entity.Link;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @SuppressWarnings("MultipleStringLiterals")
 @RequiredArgsConstructor
-public class JdbcChatLinksDao {
+public class JdbcChatLinksDao implements ChatLinksDao {
 
     private final JdbcTemplate jdbcTemplate;
     private final ChatLinksMapper chatLinksMapper = new ChatLinksMapper();

@@ -1,11 +1,10 @@
 package edu.java.scrapper.core.service.impl;
 
 import edu.java.scrapper.api.bot.dto.response.IsActiveChatDto;
-import edu.java.scrapper.core.dao.JdbcChatDao;
+import edu.java.scrapper.core.dao.jdbc.JdbcChatDao;
 import edu.java.scrapper.core.service.ChatService;
 import edu.java.scrapper.entity.Chat;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +20,7 @@ public class JdbcChatService implements ChatService {
         }
 
         return IsActiveChatDto.builder()
-            .isOpen(jdbcChatDao.findByTgChatId(tgChatId).get().isActive())
+            .isOpen(jdbcChatDao.findByTgChatId(tgChatId).get().getIsActive())
             .build();
     }
 

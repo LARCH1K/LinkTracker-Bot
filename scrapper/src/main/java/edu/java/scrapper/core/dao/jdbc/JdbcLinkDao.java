@@ -1,13 +1,13 @@
-package edu.java.scrapper.core.dao;
+package edu.java.scrapper.core.dao.jdbc;
 
 import edu.java.scrapper.api.bot.dto.request.LinkViewDto;
-import edu.java.scrapper.core.dao.mapper.LinkMapper;
-import edu.java.scrapper.core.dao.mapper.LinkViewDtoMapper;
+import edu.java.scrapper.core.dao.LinkDao;
+import edu.java.scrapper.core.dao.jdbc.mapper.LinkMapper;
+import edu.java.scrapper.core.dao.jdbc.mapper.LinkViewDtoMapper;
 import edu.java.scrapper.entity.Link;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @SuppressWarnings("MultipleStringLiterals")
 @RequiredArgsConstructor
-public class JdbcLinkDao {
+public class JdbcLinkDao implements LinkDao {
 
     private final JdbcTemplate jdbcTemplate;
 

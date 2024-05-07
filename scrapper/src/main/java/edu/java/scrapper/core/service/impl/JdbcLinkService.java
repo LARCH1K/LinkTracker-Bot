@@ -3,9 +3,9 @@ package edu.java.scrapper.core.service.impl;
 import edu.java.scrapper.api.bot.dto.request.LinkDto;
 import edu.java.scrapper.api.bot.dto.request.LinkViewDto;
 import edu.java.scrapper.api.bot.dto.request.UntrackLinkDto;
-import edu.java.scrapper.core.dao.JdbcChatDao;
-import edu.java.scrapper.core.dao.JdbcChatLinksDao;
-import edu.java.scrapper.core.dao.JdbcLinkDao;
+import edu.java.scrapper.core.dao.jdbc.JdbcChatDao;
+import edu.java.scrapper.core.dao.jdbc.JdbcChatLinksDao;
+import edu.java.scrapper.core.dao.jdbc.JdbcLinkDao;
 import edu.java.scrapper.core.service.ChatService;
 import edu.java.scrapper.core.service.LinkService;
 import edu.java.scrapper.entity.Chat;
@@ -13,7 +13,6 @@ import edu.java.scrapper.entity.ChatLinks;
 import edu.java.scrapper.entity.Link;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

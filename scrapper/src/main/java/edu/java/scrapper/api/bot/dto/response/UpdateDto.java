@@ -1,6 +1,5 @@
 package edu.java.scrapper.api.bot.dto.response;
 
-import java.util.List;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -22,6 +21,7 @@ public class UpdateDto {
 
         String info
 
-    ) {}
+    ) {
+    }
 
 }

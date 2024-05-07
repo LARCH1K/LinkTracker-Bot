@@ -1,4 +1,4 @@
-package edu.java.scrapper.core.dao.mapper;
+package edu.java.scrapper.core.dao.jdbc.mapper;
 
 import edu.java.scrapper.entity.Link;
 import java.sql.ResultSet;

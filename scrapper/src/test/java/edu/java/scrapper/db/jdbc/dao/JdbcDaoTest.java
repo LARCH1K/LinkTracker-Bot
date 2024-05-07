@@ -1,9 +1,9 @@
 package edu.java.scrapper.db.jdbc.dao;
 
 import edu.java.scrapper.TestConstants;
-import edu.java.scrapper.core.dao.JdbcChatDao;
-import edu.java.scrapper.core.dao.JdbcChatLinksDao;
-import edu.java.scrapper.core.dao.JdbcLinkDao;
+import edu.java.scrapper.core.dao.jdbc.JdbcChatDao;
+import edu.java.scrapper.core.dao.jdbc.JdbcChatLinksDao;
+import edu.java.scrapper.core.dao.jdbc.JdbcLinkDao;
 import edu.java.scrapper.core.sheduled.LinkUpdaterScheduler;
 import edu.java.scrapper.db.IntegrationTest;
 import org.junit.jupiter.api.Assertions;

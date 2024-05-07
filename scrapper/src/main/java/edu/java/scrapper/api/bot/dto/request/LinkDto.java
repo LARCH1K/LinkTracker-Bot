@@ -1,6 +1,5 @@
 package edu.java.scrapper.api.bot.dto.request;
 
-
 import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Value;
