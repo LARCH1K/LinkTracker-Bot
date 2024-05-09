@@ -1,6 +1,7 @@
 package edu.java.scrapper.entity;
 
 import java.time.LocalDate;
+import java.util.Date;
 import lombok.Data;
 
 @Data
@@ -12,6 +13,6 @@ public class Link {
 
     Integer hashsum;
 
-    LocalDate lastUpdateAt;
+    Date lastUpdateAt;
 
 }

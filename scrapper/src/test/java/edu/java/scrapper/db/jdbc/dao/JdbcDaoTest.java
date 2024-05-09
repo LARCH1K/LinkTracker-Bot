@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
@@ -28,6 +30,18 @@ public class JdbcDaoTest extends IntegrationTest {
 
     @Autowired
     private JdbcLinkDao jdbcLinkDao;
+
+    @DynamicPropertySource
+    static void properties(DynamicPropertyRegistry registry) {
+        registry.add("app.database-access-type", () -> "jdbc");
+    }
+
+    @Test
+    public void isJdbc() {
+        Assertions.assertInstanceOf(JdbcChatDao.class, jdbcChatDao);
+        Assertions.assertInstanceOf(JdbcLinkDao.class, jdbcLinkDao);
+        Assertions.assertInstanceOf(JdbcChatLinksDao.class, jdbcChatLinksDao);
+    }
 
     @Test
     @Transactional
