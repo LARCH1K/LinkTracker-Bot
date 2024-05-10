@@ -1,5 +1,6 @@
 package edu.java.bot.api.scrapper.client;
 
+import edu.java.bot.api.retrying.RetryFilter;
 import edu.java.bot.api.scrapper.dto.request.LinkDto;
 import edu.java.bot.api.scrapper.dto.request.UntrackLinkDto;
 import edu.java.bot.api.scrapper.dto.response.IsActiveChatDto;
@@ -14,7 +15,6 @@ import static edu.java.bot.api.scrapper.ApiPath.CHAT;
 import static edu.java.bot.api.scrapper.ApiPath.LINK;
 import static edu.java.bot.api.scrapper.ApiPath.SCRAPPER;
 
-@Component
 @AllArgsConstructor
 @Log4j2
 public class ScrapperClient {
@@ -23,8 +23,8 @@ public class ScrapperClient {
 
     private final String baseUrl;
 
-    public ScrapperClient() {
-        this.webClient = WebClient.create();
+    public ScrapperClient(RetryFilter retryFilter) {
+        this.webClient = WebClient.builder().filter(retryFilter).build();
         this.baseUrl = "http://localhost:8080/" + SCRAPPER;
     }
 
