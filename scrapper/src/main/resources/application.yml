@@ -1,5 +1,6 @@
 app:
   database-access-type: jpa
+  data-transfer-protocol: kafka
   scheduler:
     update-interval: 30s
     delete-interval: 4h
@@ -16,6 +17,12 @@ spring:
 
   liquibase:
     enabled: false
+
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    bootstrapServers: localhost:29092
 
 server:
   port: 8080

@@ -22,7 +22,7 @@ public class BotClient {
         this.baseUrl = "http://localhost:8090/" + BOT;
     }
 
-    public void sendUpdates(List<UpdateDto> updateDto) {
+    public void sendUpdate(UpdateDto updateDto) {
         webClient.method(HttpMethod.PUT)
             .uri(baseUrl + UPDATES)
             .bodyValue(updateDto)

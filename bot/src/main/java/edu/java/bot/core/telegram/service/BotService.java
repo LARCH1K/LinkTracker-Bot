@@ -84,6 +84,14 @@ public class BotService {
         );
     }
 
+    public void sendUpdate(UpdateDto update, @Nullable ParseMode parseMode) {
+        try {
+            sendMessage(PrettifyUtils.prettifyUpdate(update), update.getChatId(), parseMode);
+        } catch (Throwable throwable) {
+            log.error("[BOT SERVICE] :: Can't send message to {}, reason: {}.", update.getChatId(), throwable);
+        }
+    }
+
     public void sendUpdates(List<UpdateDto> updateDtos, @Nullable ParseMode parseMode) {
         updateDtos.forEach(
             updateDto -> {
