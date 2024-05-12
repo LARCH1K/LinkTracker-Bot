@@ -1,7 +1,6 @@
 package edu.java.scrapper.api.bot.client;
 
 import edu.java.scrapper.api.bot.dto.response.UpdateDto;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;

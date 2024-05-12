@@ -71,7 +71,8 @@ public class Chats extends TableImpl<ChatsRecord> {
     /**
      * The column <code>CHATS.CREATED_AT</code>.
      */
-    public final TableField<ChatsRecord, LocalDateTime> CREATED_AT = createField(DSL.name("CREATED_AT"),
+    public final TableField<ChatsRecord, LocalDateTime> CREATED_AT = createField(
+        DSL.name("CREATED_AT"),
         SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)),
         this,
         ""
@@ -86,7 +87,8 @@ public class Chats extends TableImpl<ChatsRecord> {
     /**
      * The column <code>CHATS.IS_ACTIVE</code>.
      */
-    public final TableField<ChatsRecord, Boolean> IS_ACTIVE = createField(DSL.name("IS_ACTIVE"),
+    public final TableField<ChatsRecord, Boolean> IS_ACTIVE = createField(
+        DSL.name("IS_ACTIVE"),
         SQLDataType.BOOLEAN.defaultValue(DSL.field("FALSE", SQLDataType.BOOLEAN)),
         this,
         ""

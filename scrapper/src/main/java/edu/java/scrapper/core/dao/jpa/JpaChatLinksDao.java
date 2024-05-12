@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JpaChatLinksDao extends JpaRepository<JpaChatLinks, Long> {
 
-    Optional<JpaChatLinks>  findByChatIdAndShortName(Long chatId, String shortName);
+    Optional<JpaChatLinks> findByChatIdAndShortName(Long chatId, String shortName);
 
     Optional<JpaChatLinks> findByChatIdAndLinkId(Long chatId, Long linkId);
 

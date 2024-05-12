@@ -80,7 +80,8 @@ public class ChatLinks extends TableImpl<ChatLinksRecord> {
     /**
      * The column <code>CHAT_LINKS.SHORT_NAME</code>.
      */
-    public final TableField<ChatLinksRecord, String> SHORT_NAME = createField(DSL.name("SHORT_NAME"),
+    public final TableField<ChatLinksRecord, String> SHORT_NAME = createField(
+        DSL.name("SHORT_NAME"),
         SQLDataType.VARCHAR(40).nullable(false).defaultValue(DSL.field("'Your link'", SQLDataType.VARCHAR)),
         this,
         ""

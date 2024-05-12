@@ -31,6 +31,7 @@ public record ApplicationConfig(
 
     public record Scheduler(@NotNull Duration updateInterval, @NotNull Duration deleteInterval) {
     }
+
     public enum DataTransferProtocol {
 
         HTTP,

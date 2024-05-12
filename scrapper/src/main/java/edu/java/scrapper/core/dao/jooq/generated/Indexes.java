@@ -29,7 +29,8 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
-    public static final Index INDEX_CHATS_TG_CHAT_ID = Internal.createIndex(DSL.name("INDEX_CHATS_TG_CHAT_ID"),
+    public static final Index INDEX_CHATS_TG_CHAT_ID = Internal.createIndex(
+        DSL.name("INDEX_CHATS_TG_CHAT_ID"),
         Chats.CHATS,
         new OrderField[] {Chats.CHATS.TG_CHAT_ID},
         false

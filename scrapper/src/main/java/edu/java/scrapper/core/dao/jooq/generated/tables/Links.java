@@ -83,7 +83,8 @@ public class Links extends TableImpl<LinksRecord> {
     /**
      * The column <code>LINKS.LAST_UPDATE_AT</code>.
      */
-    public final TableField<LinksRecord, LocalDate> LAST_UPDATE_AT = createField(DSL.name("LAST_UPDATE_AT"),
+    public final TableField<LinksRecord, LocalDate> LAST_UPDATE_AT = createField(
+        DSL.name("LAST_UPDATE_AT"),
         SQLDataType.LOCALDATE.defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATE)),
         this,
         ""

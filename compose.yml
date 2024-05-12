@@ -58,7 +58,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
-      - ./kafka:/var/lib/kafka/data
+      - ./kafka3:/var/lib/kafka/data
 
   init-kafka:
     image: confluentinc/cp-kafka:7.4.4
@@ -72,10 +72,25 @@ services:
       kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic messages.scrapper_dlq --replication-factor 1 --partitions 1
       "
 
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    image: grafana/grafana-oss
+    ports:
+      - "3000:3000"
+
 volumes:
   postgresql: { }
   kafka: { }
   zookeeper: { }
+  prometheus: { }
 
 networks:
   backend: { }

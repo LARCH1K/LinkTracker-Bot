@@ -4,12 +4,12 @@ import edu.java.bot.api.retrying.backoff.BackoffType;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import java.time.Duration;
+import java.util.Set;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import java.time.Duration;
-import java.util.Set;
 
 @Validated
 @ConfigurationProperties(prefix = "app", ignoreUnknownFields = false)
