@@ -34,6 +34,7 @@ public class JdbcDaoTest extends IntegrationTest {
     @DynamicPropertySource
     static void properties(DynamicPropertyRegistry registry) {
         registry.add("app.database-access-type", () -> "jdbc");
+        registry.add("app.data-transfer-protocol", () -> "http");
     }
 
     @Test
